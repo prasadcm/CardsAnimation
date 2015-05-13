@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C21E4E9D1B01FF98006D800C /* CardsAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E4E9C1B01FF98006D800C /* CardsAnimationTests.m */; };
 		C21E4EE31B02275F006D800C /* CAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E4ED61B02275F006D800C /* CAAppDelegate.m */; };
 		C21E4EE41B02275F006D800C /* CACommon.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E4ED91B02275F006D800C /* CACommon.m */; };
 		C21E4EE51B02275F006D800C /* CATabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E4EDC1B02275F006D800C /* CATabBarController.m */; };
@@ -22,6 +21,11 @@
 		C227933D1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C227933B1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld */; };
 		C22793401B026FD200A8ADC3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C227933F1B026FD200A8ADC3 /* DBManager.m */; };
 		C22793451B03146C00A8ADC3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22793441B03146C00A8ADC3 /* Default-568h@2x.png */; };
+		C22793521B031DA600A8ADC3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793511B031DA600A8ADC3 /* HomeViewController.m */; };
+		C22793561B03274700A8ADC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C22793551B03274700A8ADC3 /* Info.plist */; };
+		C22793571B0329F600A8ADC3 /* CardsAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793531B03273000A8ADC3 /* CardsAnimationTests.m */; };
+		C227935A1B032A3400A8ADC3 /* Cards.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793591B032A3400A8ADC3 /* Cards.m */; };
+		C227935D1B032A3500A8ADC3 /* TripInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C227935C1B032A3500A8ADC3 /* TripInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +42,6 @@
 		C21E4E7A1B01FF97006D800C /* CardsAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21E4E961B01FF98006D800C /* CardsAnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardsAnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C21E4E9B1B01FF98006D800C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C21E4E9C1B01FF98006D800C /* CardsAnimationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardsAnimationTests.m; sourceTree = "<group>"; };
 		C21E4ED51B02275F006D800C /* CAAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAAppDelegate.h; sourceTree = "<group>"; };
 		C21E4ED61B02275F006D800C /* CAAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAAppDelegate.m; sourceTree = "<group>"; };
 		C21E4ED81B02275F006D800C /* CACommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CACommon.h; sourceTree = "<group>"; };
@@ -62,6 +65,14 @@
 		C22793421B02710B00A8ADC3 /* SONLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SONLog.h; sourceTree = "<group>"; };
 		C22793431B02733800A8ADC3 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		C22793441B03146C00A8ADC3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C22793501B031DA600A8ADC3 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		C22793511B031DA600A8ADC3 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		C22793531B03273000A8ADC3 /* CardsAnimationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardsAnimationTests.m; path = CardsAnimationTests/CardsAnimationTests.m; sourceTree = SOURCE_ROOT; };
+		C22793551B03274700A8ADC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CardsAnimationTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		C22793581B032A3400A8ADC3 /* Cards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
+		C22793591B032A3400A8ADC3 /* Cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cards.m; sourceTree = "<group>"; };
+		C227935B1B032A3500A8ADC3 /* TripInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripInfo.h; sourceTree = "<group>"; };
+		C227935C1B032A3500A8ADC3 /* TripInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +114,8 @@
 		C21E4E991B01FF98006D800C /* CardsAnimationTests */ = {
 			isa = PBXGroup;
 			children = (
-				C21E4E9C1B01FF98006D800C /* CardsAnimationTests.m */,
+				C22793551B03274700A8ADC3 /* Info.plist */,
+				C22793531B03273000A8ADC3 /* CardsAnimationTests.m */,
 				C21E4E9A1B01FF98006D800C /* Supporting Files */,
 			);
 			name = CardsAnimationTests;
@@ -151,6 +163,8 @@
 			children = (
 				C21E4EDB1B02275F006D800C /* CATabBarController.h */,
 				C21E4EDC1B02275F006D800C /* CATabBarController.m */,
+				C22793501B031DA600A8ADC3 /* HomeViewController.h */,
+				C22793511B031DA600A8ADC3 /* HomeViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -183,6 +197,10 @@
 		C227933A1B026F3000A8ADC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C227935B1B032A3500A8ADC3 /* TripInfo.h */,
+				C227935C1B032A3500A8ADC3 /* TripInfo.m */,
+				C22793581B032A3400A8ADC3 /* Cards.h */,
+				C22793591B032A3400A8ADC3 /* Cards.m */,
 				C227933B1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld */,
 			);
 			path = Model;
@@ -270,6 +288,7 @@
 			files = (
 				C21E4F031B023360006D800C /* Planner.storyboard in Resources */,
 				C21E4F041B023360006D800C /* Favorites.storyboard in Resources */,
+				C22793561B03274700A8ADC3 /* Info.plist in Resources */,
 				C21E4F051B023360006D800C /* Holiday.storyboard in Resources */,
 				C21E4F061B023360006D800C /* More.storyboard in Resources */,
 				C21E4F021B022CC5006D800C /* Main.storyboard in Resources */,
@@ -295,10 +314,13 @@
 			files = (
 				C21E4EE41B02275F006D800C /* CACommon.m in Sources */,
 				C21E4EE31B02275F006D800C /* CAAppDelegate.m in Sources */,
+				C22793521B031DA600A8ADC3 /* HomeViewController.m in Sources */,
+				C227935A1B032A3400A8ADC3 /* Cards.m in Sources */,
 				C21E4EE81B02275F006D800C /* main.m in Sources */,
 				C22793401B026FD200A8ADC3 /* DBManager.m in Sources */,
 				C227933D1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld in Sources */,
 				C21E4EE51B02275F006D800C /* CATabBarController.m in Sources */,
+				C227935D1B032A3500A8ADC3 /* TripInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C21E4E9D1B01FF98006D800C /* CardsAnimationTests.m in Sources */,
+				C22793571B0329F600A8ADC3 /* CardsAnimationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+    <entity name="Cards" representedClassName="Cards" syncable="YES">
+        <attribute name="cardId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="cardUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shouldShare" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TripInfo" inverseName="cards" inverseEntity="TripInfo" syncable="YES"/>
+    </entity>
+    <entity name="TripInfo" representedClassName="TripInfo" syncable="YES">
+        <attribute name="daysToGo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tripId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="weather" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Cards" inverseName="trip" inverseEntity="Cards" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Cards" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="TripInfo" positionX="133" positionY="-81" width="128" height="133"/>
+    </elements>
 </model>
