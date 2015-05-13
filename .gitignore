@@ -1,26 +1,36 @@
-# Xcode
-#
+# Exclude the build directory
+Sage/build/*
+
+# Exclude Xcode temporary files
+*~.nib
+
+# Excude Xcode build files
+DerivedData/
 build/
-*.pbxuser
-!default.pbxuser
+
+# Exclude OS X folder attributes
+.DS_Store
+*.lock
+!podfile.lock
+!Manifest.lock
+*.swp
+profile
+  
+# Exclude user-specific XCode private settings
+*.mode1
 *.mode1v3
-!default.mode1v3
 *.mode2v3
-!default.mode2v3
+*.perspective
 *.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
 !default.perspectivev3
 xcuserdata
-*.xccheckout
+!xcshareddata
+*.pbxuser
+*.xcworkspace
+!SageOne.xcworkspace
+*.xcbkptlist
 *.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-#Pods/
