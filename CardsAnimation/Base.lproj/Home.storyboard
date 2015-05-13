@@ -8,7 +8,7 @@
         <!--Home-->
         <scene sceneID="Trg-dz-eby">
             <objects>
-                <viewController id="jLz-r3-4Uy" userLabel="Home" sceneMemberID="viewController">
+                <viewController id="jLz-r3-4Uy" userLabel="Home" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ykD-sh-MRP"/>
                         <viewControllerLayoutGuide type="bottom" id="aWR-t4-eKF"/>

@@ -26,6 +26,12 @@
 		C22793571B0329F600A8ADC3 /* CardsAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793531B03273000A8ADC3 /* CardsAnimationTests.m */; };
 		C227935A1B032A3400A8ADC3 /* Cards.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793591B032A3400A8ADC3 /* Cards.m */; };
 		C227935D1B032A3500A8ADC3 /* TripInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C227935C1B032A3500A8ADC3 /* TripInfo.m */; };
+		C22793611B03316900A8ADC3 /* TripInfo+CardsAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793601B03316900A8ADC3 /* TripInfo+CardsAnimation.m */; };
+		C22793641B03365400A8ADC3 /* NSDictionary+NullCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793631B03365400A8ADC3 /* NSDictionary+NullCheck.m */; };
+		C22793671B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793661B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.m */; };
+		C22793741B03810400A8ADC3 /* trip.gallery in Resources */ = {isa = PBXBuildFile; fileRef = C22793731B03810400A8ADC3 /* trip.gallery */; };
+		C22793771B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793761B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m */; };
+		C227937A1B03A50400A8ADC3 /* Cards+CardsAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,18 @@
 		C22793591B032A3400A8ADC3 /* Cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cards.m; sourceTree = "<group>"; };
 		C227935B1B032A3500A8ADC3 /* TripInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripInfo.h; sourceTree = "<group>"; };
 		C227935C1B032A3500A8ADC3 /* TripInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripInfo.m; sourceTree = "<group>"; };
+		C227935E1B032FC800A8ADC3 /* ManagedObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagedObjectProtocol.h; sourceTree = "<group>"; };
+		C227935F1B03316900A8ADC3 /* TripInfo+CardsAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TripInfo+CardsAnimation.h"; sourceTree = "<group>"; };
+		C22793601B03316900A8ADC3 /* TripInfo+CardsAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TripInfo+CardsAnimation.m"; sourceTree = "<group>"; };
+		C22793621B03365400A8ADC3 /* NSDictionary+NullCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullCheck.h"; sourceTree = "<group>"; };
+		C22793631B03365400A8ADC3 /* NSDictionary+NullCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullCheck.m"; sourceTree = "<group>"; };
+		C22793651B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+ChangeSet.h"; sourceTree = "<group>"; };
+		C22793661B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+ChangeSet.m"; sourceTree = "<group>"; };
+		C22793731B03810400A8ADC3 /* trip.gallery */ = {isa = PBXFileReference; lastKnownFileType = folder; name = trip.gallery; path = CardsAnimation/trip.gallery; sourceTree = "<group>"; };
+		C22793751B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+FetchEntity.h"; sourceTree = "<group>"; };
+		C22793761B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+FetchEntity.m"; sourceTree = "<group>"; };
+		C22793781B03A50400A8ADC3 /* Cards+CardsAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cards+CardsAnimation.h"; sourceTree = "<group>"; };
+		C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cards+CardsAnimation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				C21E4ECE1B02275F006D800C /* CardsAnimation */,
+				C22793731B03810400A8ADC3 /* trip.gallery */,
 				C21E4E991B01FF98006D800C /* CardsAnimationTests */,
 				C21E4E7B1B01FF97006D800C /* Products */,
 			);
@@ -148,6 +167,13 @@
 		C21E4ED71B02275F006D800C /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C22793751B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.h */,
+				C22793761B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m */,
+				C22793651B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.h */,
+				C22793661B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.m */,
+				C22793621B03365400A8ADC3 /* NSDictionary+NullCheck.h */,
+				C22793631B03365400A8ADC3 /* NSDictionary+NullCheck.m */,
+				C227935E1B032FC800A8ADC3 /* ManagedObjectProtocol.h */,
 				C22793431B02733800A8ADC3 /* SynthesizeSingleton.h */,
 				C22793421B02710B00A8ADC3 /* SONLog.h */,
 				C21E4ED81B02275F006D800C /* CACommon.h */,
@@ -202,6 +228,10 @@
 				C22793581B032A3400A8ADC3 /* Cards.h */,
 				C22793591B032A3400A8ADC3 /* Cards.m */,
 				C227933B1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld */,
+				C227935F1B03316900A8ADC3 /* TripInfo+CardsAnimation.h */,
+				C22793601B03316900A8ADC3 /* TripInfo+CardsAnimation.m */,
+				C22793781B03A50400A8ADC3 /* Cards+CardsAnimation.h */,
+				C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,6 +325,7 @@
 				C22793451B03146C00A8ADC3 /* Default-568h@2x.png in Resources */,
 				C21E4F011B022C9E006D800C /* Home.storyboard in Resources */,
 				C21E4EE61B02275F006D800C /* Images.xcassets in Resources */,
+				C22793741B03810400A8ADC3 /* trip.gallery in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,10 +347,15 @@
 				C21E4EE31B02275F006D800C /* CAAppDelegate.m in Sources */,
 				C22793521B031DA600A8ADC3 /* HomeViewController.m in Sources */,
 				C227935A1B032A3400A8ADC3 /* Cards.m in Sources */,
+				C22793641B03365400A8ADC3 /* NSDictionary+NullCheck.m in Sources */,
 				C21E4EE81B02275F006D800C /* main.m in Sources */,
+				C22793671B033C0800A8ADC3 /* NSOrderedSet+ChangeSet.m in Sources */,
 				C22793401B026FD200A8ADC3 /* DBManager.m in Sources */,
+				C227937A1B03A50400A8ADC3 /* Cards+CardsAnimation.m in Sources */,
 				C227933D1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld in Sources */,
+				C22793611B03316900A8ADC3 /* TripInfo+CardsAnimation.m in Sources */,
 				C21E4EE51B02275F006D800C /* CATabBarController.m in Sources */,
+				C22793771B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m in Sources */,
 				C227935D1B032A3500A8ADC3 /* TripInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

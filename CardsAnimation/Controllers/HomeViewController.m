@@ -9,11 +9,13 @@
 #import "HomeViewController.h"
 #import "Cards.h"
 #import "TripInfo.h"
+#import "NSManagedObject+FetchEntity.h"
+#import "DBManager.h"
 
 @interface HomeViewController ()
 
 
-@property (nonatomic,strong) Cards *country;
+@property (nonatomic,strong) TripInfo *tripInfo;
 
 @end
 
@@ -21,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSManagedObjectContext *context = [DBManager sharedDBManager].managedObjectContext;
+    self.tripInfo = (TripInfo *)[NSManagedObject entity:@"TripInfo" existsInContext:context];
 }
 
 - (void)didReceiveMemoryWarning {

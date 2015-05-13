@@ -1,0 +1,26 @@
+{
+    "tripDetails": {
+        "tripId": 100,
+        "weather": 1,
+        "daysToGo": 182,
+        "temperature": 34,
+        "location": "Greece",
+        "cards": [
+                  {
+                  "cardId" : 1,
+                  "cardUrl" : "card_1.png",
+                  "shouldShare" : false
+                  },
+                  {
+                  "cardId" : 2,
+                  "cardUrl" : "card_2.png",
+                  "shouldShare" : true
+                  },
+                  {
+                  "cardId" : 3,
+                  "cardUrl" : "card_3.png",
+                  "shouldShare" : true
+                  }
+        ]
+    }
+}

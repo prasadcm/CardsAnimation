@@ -8,7 +8,7 @@
 
 #import "TripInfo.h"
 #import "Cards.h"
-
+#import "NSOrderedSet+ChangeSet.h"
 
 @implementation TripInfo
 
@@ -18,5 +18,19 @@
 @dynamic location;
 @dynamic tripId;
 @dynamic cards;
+
+- (void)addCardsObject:(Cards *)value {
+    [self setCards:[[self cards] orderedSetByAddingObject:value]];
+}
+- (void)removeCardsObject:(Cards *)value {
+    [self setCards:[[self cards] orderedSetByRemovingObject:value]];
+ 
+}
+- (void)addCards:(NSOrderedSet *)values {
+    [self setCards:[[self cards] orderedSetByAddingObjectsFromArray:[values array]]];
+}
+- (void)removeCards:(NSOrderedSet *)values {
+    [self setCards:[[self cards] orderedSetByRemovingObjectsFromArray:[values array]]];
+}
 
 @end

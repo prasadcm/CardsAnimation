@@ -8,4 +8,6 @@
 
 @interface CACommon : NSObject
 
+
++ (NSString *) galleryPath;
 @end
