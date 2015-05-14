@@ -220,6 +220,8 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     UIImageView *tempDeckView = [self.deckViewArray objectAtIndex:viewCount];
     NSInteger __block currentIndex = viewCount;
     
+    [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
+
     [UIView animateWithDuration:0.7
                           delay:0.0
                         options: UIViewAnimationOptionTransitionNone
@@ -252,7 +254,6 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
                                                                            [self animateView:nextViewCount];
                                                                        }
                                                                    }
-                                                                   [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
                                                                    
                                                                }];
                                           }];
@@ -266,6 +267,12 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     NSInteger __block currentIndex = viewCount;
     nextViewIndex = currentIndex;
     
+    if (currentIndex > 0 )
+    {
+        [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
+    } else if(currentIndex == 0) {
+        [self setText:@"01" animated:YES];
+    }
     [UIView animateWithDuration:0.7
                           delay:0.0
                         options: UIViewAnimationOptionTransitionNone
@@ -289,7 +296,6 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
                                                   if (!needSwipe) {
                                                       [self animateView:nextViewCount];
                                                   }
-                                                  [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
                                                   
                                               }else if (currentIndex == 0)
                                               {
@@ -298,8 +304,6 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
                                                   if (!needSwipe) {
                                                       [self animateFirstView:[self.tripInfo.cards count]-1];
                                                   }
-                                                  //Diring Swipe
-                                                  [self setText:@"01" animated:YES];
                                               }
                                               
                                           }];

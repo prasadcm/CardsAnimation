@@ -586,7 +586,7 @@
 				INFOPLIST_FILE = CardsAnimationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = CardsAnimationTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardsAnimations.app/CardsAnimations";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardsAnimation.app/CardsAnimation";
 			};
 			name = Debug;
 		};
@@ -602,7 +602,7 @@
 				INFOPLIST_FILE = CardsAnimationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = CardsAnimationTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardsAnimations.app/CardsAnimations";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardsAnimation.app/CardsAnimation";
 			};
 			name = Release;
 		};

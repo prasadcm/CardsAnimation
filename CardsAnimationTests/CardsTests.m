@@ -50,8 +50,8 @@
     // Private method but we can still test it
     [self.card refreshFromDictionary:dictionary];
     
-    XCTAssertEqual(self.card.cardId, @200, @"This should have been updated by the refresh method");
-    XCTAssertEqual(self.card.cardUrl, @"cards_2.png", @"This should have been updated by the refresh method");
+    XCTAssertEqual([self.card.cardId intValue], 200, @"This should have been updated by the refresh method");
+    XCTAssertEqualObjects(self.card.cardUrl, @"cards_2.png", @"This should have been updated by the refresh method");
     XCTAssertEqual(self.card.shouldShare, @false, @"This should have been updated by the refresh method");
 }
 

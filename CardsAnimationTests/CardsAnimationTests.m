@@ -1,6 +1,6 @@
 //
-//  CardsAnimationsTests.m
-//  CardsAnimationsTests
+//  CardsAnimationTests.m
+//  CardsAnimationTests
 //
 //  Created by Prasad CM on 12/05/15.
 //  Copyright (c) 2015 Sonata Software Limited. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface CardsAnimationsTests : XCTestCase
+@interface CardsAnimationTests : XCTestCase
 
 @end
 
-@implementation CardsAnimationsTests
+@implementation CardsAnimationTests
 
 - (void)setUp {
     [super setUp];
