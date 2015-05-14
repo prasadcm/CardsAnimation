@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" id="IMA-Bu-W4u" userLabel="Tab Bar Item"/>
+                    <tabBarItem key="tabBarItem" title="More" image="more" id="IMA-Bu-W4u" userLabel="Tab Bar Item"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2W-NO-a1M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,4 +26,7 @@
             <point key="canvasLocation" x="311" y="264"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="more" width="25" height="25"/>
+    </resources>
 </document>

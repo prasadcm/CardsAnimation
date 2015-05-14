@@ -86,7 +86,7 @@
                             <constraint firstItem="nzf-zH-3P2" firstAttribute="leading" secondItem="ru5-B1-0Zd" secondAttribute="leadingMargin" id="v9X-7z-0zn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="M3F-2v-bZo"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="M3F-2v-bZo"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="cardsContainerView" destination="Pq7-pd-HpB" id="U8n-7w-Zu8"/>
@@ -101,4 +101,7 @@
             <point key="canvasLocation" x="-703" y="-673"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home" width="25" height="25"/>
+    </resources>
 </document>

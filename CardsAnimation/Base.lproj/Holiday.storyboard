@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Holiday" id="Nf2-ea-qTS" userLabel="Tab Bar Item"/>
+                    <tabBarItem key="tabBarItem" title="Holiday" image="holiday" id="Nf2-ea-qTS" userLabel="Tab Bar Item"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggc-BI-DYm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -26,4 +26,7 @@
             <point key="canvasLocation" x="237" y="393"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="holiday" width="25" height="25"/>
+    </resources>
 </document>
