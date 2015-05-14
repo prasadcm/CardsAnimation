@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "Cards+CardsAnimation.h"
 #import "DBManager.h"
+#import "CACommon.h"
 
 @interface CardsTests : XCTestCase
 
@@ -42,36 +43,33 @@
 }
 
 - (void)testUpdateCard {
+    
     NSDictionary* dictionary = @{@"cardId": @200,
                                       @"cardUrl": @"cards_2.png",
                                       @"shouldShare": @false
                                       };
-    
+        
     // Private method but we can still test it
     [self.card refreshFromDictionary:dictionary];
     
+    NSString *galleryPath = [CACommon galleryPath];
+    NSURL *galleryURL = [NSURL URLWithString:galleryPath];
+    NSString *filePath = [[galleryURL URLByAppendingPathComponent:@"cards_2.png"] path];
+    
     XCTAssertEqual([self.card.cardId intValue], 200, @"This should have been updated by the refresh method");
-    XCTAssertEqualObjects(self.card.cardUrl, @"cards_2.png", @"This should have been updated by the refresh method");
-    XCTAssertEqual(self.card.shouldShare, @false, @"This should have been updated by the refresh method");
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+    XCTAssertEqualObjects(self.card.cardUrl, filePath, @"This should have been updated by the refresh method");
+    XCTAssertEqual([self.card.shouldShare boolValue], false, @"This should have been updated by the refresh method");
 }
 
 + (Cards *)sampleCard:(NSManagedObjectContext*)moc {
     Cards* card = [NSEntityDescription insertNewObjectForEntityForName:@"Cards" inManagedObjectContext:moc];
     
+    NSString *galleryPath = [CACommon galleryPath];
+    NSURL *galleryURL = [NSURL URLWithString:galleryPath];
+    NSString *filePath = [[galleryURL URLByAppendingPathComponent:@"cards_1.png"] path];
+    
     card.cardId = @100;
-    card.cardUrl = @"cards_1.png";
+    card.cardUrl = filePath;
     card.shouldShare = @false;
     
     return card;

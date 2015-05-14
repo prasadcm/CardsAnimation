@@ -23,7 +23,6 @@
 		C22793451B03146C00A8ADC3 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C22793441B03146C00A8ADC3 /* Default-568h@2x.png */; };
 		C22793521B031DA600A8ADC3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793511B031DA600A8ADC3 /* HomeViewController.m */; };
 		C22793561B03274700A8ADC3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C22793551B03274700A8ADC3 /* Info.plist */; };
-		C22793571B0329F600A8ADC3 /* CardsAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793531B03273000A8ADC3 /* CardsAnimationTests.m */; };
 		C227935A1B032A3400A8ADC3 /* Cards.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793591B032A3400A8ADC3 /* Cards.m */; };
 		C227935D1B032A3500A8ADC3 /* TripInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C227935C1B032A3500A8ADC3 /* TripInfo.m */; };
 		C22793611B03316900A8ADC3 /* TripInfo+CardsAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793601B03316900A8ADC3 /* TripInfo+CardsAnimation.m */; };
@@ -43,6 +42,7 @@
 		C227938F1B0485E200A8ADC3 /* NSDictionary+NullCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793631B03365400A8ADC3 /* NSDictionary+NullCheck.m */; };
 		C22793941B0485E200A8ADC3 /* CACommon.m in Sources */ = {isa = PBXBuildFile; fileRef = C21E4ED91B02275F006D800C /* CACommon.m */; };
 		C22793961B0485E200A8ADC3 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C227933F1B026FD200A8ADC3 /* DBManager.m */; };
+		C22793991B049EF200A8ADC3 /* TripInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793981B049EF200A8ADC3 /* TripInfoTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,6 @@
 		C22793441B03146C00A8ADC3 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C22793501B031DA600A8ADC3 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		C22793511B031DA600A8ADC3 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		C22793531B03273000A8ADC3 /* CardsAnimationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardsAnimationTests.m; path = CardsAnimationTests/CardsAnimationTests.m; sourceTree = SOURCE_ROOT; };
 		C22793551B03274700A8ADC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CardsAnimationTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		C22793581B032A3400A8ADC3 /* Cards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cards.h; sourceTree = "<group>"; };
 		C22793591B032A3400A8ADC3 /* Cards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cards.m; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cards+CardsAnimation.m"; sourceTree = "<group>"; };
 		C227937F1B04731A00A8ADC3 /* CardsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardsTests.m; path = CardsAnimationTests/CardsTests.m; sourceTree = SOURCE_ROOT; };
 		C22793971B04871500A8ADC3 /* CardsAnimationTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CardsAnimationTests-Prefix.pch"; path = "CardsAnimationTests/CardsAnimationTests-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		C22793981B049EF200A8ADC3 /* TripInfoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TripInfoTests.m; path = CardsAnimationTests/TripInfoTests.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				C227937F1B04731A00A8ADC3 /* CardsTests.m */,
-				C22793531B03273000A8ADC3 /* CardsAnimationTests.m */,
+				C22793981B049EF200A8ADC3 /* TripInfoTests.m */,
 				C21E4E9A1B01FF98006D800C /* Supporting Files */,
 			);
 			name = CardsAnimationTests;
@@ -382,12 +382,12 @@
 				C22793851B0485E200A8ADC3 /* CardsAnimation.xcdatamodeld in Sources */,
 				C22793871B0485E200A8ADC3 /* TripInfo+CardsAnimation.m in Sources */,
 				C22793891B0485E200A8ADC3 /* Cards+CardsAnimation.m in Sources */,
+				C22793991B049EF200A8ADC3 /* TripInfoTests.m in Sources */,
 				C227938B1B0485E200A8ADC3 /* NSManagedObject+FetchEntity.m in Sources */,
 				C227938D1B0485E200A8ADC3 /* NSOrderedSet+ChangeSet.m in Sources */,
 				C227938F1B0485E200A8ADC3 /* NSDictionary+NullCheck.m in Sources */,
 				C22793941B0485E200A8ADC3 /* CACommon.m in Sources */,
 				C22793961B0485E200A8ADC3 /* DBManager.m in Sources */,
-				C22793571B0329F600A8ADC3 /* CardsAnimationTests.m in Sources */,
 				C22793801B04731A00A8ADC3 /* CardsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
