@@ -8,12 +8,12 @@
 
 #import "HomeViewController.h"
 #import "Cards.h"
-#import "TripInfo.h"
-#import "NSManagedObject+FetchEntity.h"
-#import "DBManager.h"
-#import "CARotatingLabel.h"
+#import "TripInfo+CardsAnimation.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+typedef void(^CALabelPreTransitionBlock)(UILabel* labelToEnter);
+typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnter);
 
 @interface HomeViewController ()
 {
@@ -24,17 +24,24 @@
     BOOL firstViewAnimation;
     
     NSInteger nextViewIndex;
-//    NSArray *picArray;
     int maxAngle;
 }
 
 @property (strong, nonatomic)NSMutableArray *deckViewArray;
-@property (strong, nonatomic)CARotatingLabel *currentViewCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *cardsContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *temparaturLbl;
 @property (strong, nonatomic) UILabel *viewCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *daysToGoLbl;
+
+//Rotating animation objects
+@property (strong, nonatomic) UIView *animationView;
+@property (strong, nonatomic) NSArray *animateLblArray;
+@property (strong, nonatomic) UILabel *currentLbl;
+@property (assign, nonatomic) NSUInteger currentLblIndex;
+@property (assign, nonatomic) NSTimeInterval transitionDuration;
+@property (copy, nonatomic) CALabelPreTransitionBlock preTransitionBlock;
+@property (copy, nonatomic) CALabelTransitionBlock transitionBlock;
 
 @property (nonatomic,strong) TripInfo *tripInfo;
 
@@ -44,9 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSManagedObjectContext *context = [DBManager sharedDBManager].managedObjectContext;
-    self.tripInfo = (TripInfo *)[NSManagedObject entity:@"TripInfo" existsInContext:context];
+    self.tripInfo = [TripInfo tripInfo];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -71,18 +76,21 @@
     //    [self animateFirstView:numberOfCards-1];
     //    [self animateView:self.deckViewArray.count-1];
     
-    //Adding Card Count Label
-    self.currentViewCountLabel = [[CARotatingLabel alloc]initWithFrame:CGRectMake(viewWidth*0.45, viewHeight*0.95, 15, 20)];
-    [self.currentViewCountLabel setText:@"01" animated:NO];
-    [self.currentViewCountLabel setAdjustsFontSizeToFitWidth:YES];
-    [self.currentViewCountLabel setTextColor:[UIColor lightGrayColor]];
-    [self.currentViewCountLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
-    [self.currentViewCountLabel setTextAlignment:NSTextAlignmentRight];
-    self.currentViewCountLabel.transitionDuration = 0.75;
-    [self.cardsContainerView addSubview:self.currentViewCountLabel];
+    //Adding card counter
+    self.animationView = [[UIView alloc]init];
+    [self.animationView setFrame:CGRectMake(viewWidth*0.45, viewHeight*0.95, 15, 20)];
+    [self.animationView setBackgroundColor:[UIColor clearColor]];
+    
+    [self prepareTransition:self.animationView];
+    [self setupEffect:0.3];
+    [self setText:@"01" animated:NO];
+    [self setFont:[UIFont boldSystemFontOfSize:13.0]];
+    [self setTextColor:[UIColor lightGrayColor]];
+    
+    [self.cardsContainerView addSubview:self.animationView];
     
     self.viewCountLabel = [[UILabel alloc]init];
-    [self.viewCountLabel setFrame:CGRectMake(CGRectGetMaxX(self.currentViewCountLabel.frame)+3, self.currentViewCountLabel.frame.origin.y, 40, 20)];
+    [self.viewCountLabel setFrame:CGRectMake(CGRectGetMaxX(self.animationView.frame)+3, self.animationView.frame.origin.y, 40, 20)];
     [self.viewCountLabel setText:[NSString stringWithFormat:@"of %02lu",[self.tripInfo.cards count]]];
     [self.viewCountLabel setAdjustsFontSizeToFitWidth:YES];
     [self.viewCountLabel setTextColor:[UIColor lightGrayColor]];
@@ -244,7 +252,7 @@
                                                                            [self animateView:nextViewCount];
                                                                        }
                                                                    }
-                                                                   [self.currentViewCountLabel setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
+                                                                   [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
                                                                    
                                                                }];
                                           }];
@@ -281,7 +289,7 @@
                                                   if (!needSwipe) {
                                                       [self animateView:nextViewCount];
                                                   }
-                                                  [self.currentViewCountLabel setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
+                                                  [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
                                                   
                                               }else if (currentIndex == 0)
                                               {
@@ -291,16 +299,114 @@
                                                       [self animateFirstView:[self.tripInfo.cards count]-1];
                                                   }
                                                   //Diring Swipe
-                                                  [self.currentViewCountLabel setText:@"01" animated:YES];
+                                                  [self setText:@"01" animated:YES];
                                               }
                                               
                                           }];
                      }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Animate UIlabel
+
+-(void)prepareTransition:(UIView *)view
+{
+    //Preparing Transition
+    CGFloat currentHeight = view.bounds.size.height;
+    self.preTransitionBlock = ^(UILabel* labelToEnter) {
+        
+        CGRect frame = labelToEnter.frame;
+        frame.origin.y = currentHeight;
+        labelToEnter.frame = frame;
+    };
+    self.transitionBlock = ^(UILabel* labelToExit, UILabel* labelToEnter) {
+        CGRect frame = labelToExit.frame;
+        CGRect enterFrame = labelToEnter.frame;
+        frame.origin.y = 0 - frame.size.height;
+        enterFrame.origin.y = roundf((currentHeight / 2) - (enterFrame.size.height / 2));
+        labelToExit.frame = frame;
+        labelToEnter.frame = enterFrame;
+    };
+    
 }
 
+- (void)setupEffect:(NSTimeInterval)duration
+{
+    NSUInteger size = 2;
+    NSMutableArray* labels = [NSMutableArray arrayWithCapacity:size];
+    for (NSUInteger i = 0; i < size; i++) {
+        
+        UILabel* label = [[UILabel alloc] initWithFrame:self.animationView.bounds];
+        [self.animationView addSubview:label];
+        
+        label.backgroundColor = [UIColor clearColor];
+        label.hidden = YES;
+        label.numberOfLines = 0;
+        [labels addObject:label];
+    }
+    
+    self.currentLblIndex = 0;
+    self.currentLbl = [labels objectAtIndex:0];
+    self.animateLblArray = labels;
+    
+    self.currentLbl.hidden = NO;
+    
+    self.transitionDuration = duration;
+}
+
+- (void)setText:(NSString*)text animated:(BOOL)animated
+{
+    NSUInteger nextLabelIndex = (self.currentLblIndex + 1) % [self.animateLblArray count];
+    UILabel* nextLabel = [self.animateLblArray objectAtIndex:nextLabelIndex];
+    UILabel* previousLabel = self.currentLbl;
+    
+    nextLabel.text = text;
+    nextLabel.alpha = 1;
+    nextLabel.transform = CGAffineTransformIdentity;
+    nextLabel.frame = self.animationView.bounds;
+    
+    self.currentLbl = nextLabel;
+    self.currentLblIndex = nextLabelIndex;
+    
+    if (_preTransitionBlock != nil) {
+        _preTransitionBlock(nextLabel);
+    } else {
+        nextLabel.alpha = 0;
+    }
+    
+    nextLabel.hidden = NO;
+    
+    void (^changeBlock)() = ^() {
+        if (_transitionBlock != nil) {
+            _transitionBlock(previousLabel, nextLabel);
+        } else {
+            previousLabel.alpha = 0;
+            nextLabel.alpha = 1;
+        }
+    };
+    
+    void (^completionBlock)(BOOL) = ^(BOOL finished) {
+        if (finished) previousLabel.hidden = YES;
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:_transitionDuration animations:changeBlock completion:completionBlock];
+    } else {
+        changeBlock();
+        completionBlock(YES);
+    }
+}
+
+- (void)setFont:(UIFont*)font
+{
+    for (UILabel* label in self.animateLblArray) {
+        label.font = font;
+    }
+}
+
+- (void)setTextColor:(UIColor*)textColor
+{
+    for (UILabel* label in self.animateLblArray) {
+        label.textColor = textColor;
+    }
+}
 @end

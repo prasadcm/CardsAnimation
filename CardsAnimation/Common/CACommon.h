@@ -10,4 +10,5 @@
 
 
 + (NSString *) galleryPath;
+- (void) loadTripDetails;
 @end

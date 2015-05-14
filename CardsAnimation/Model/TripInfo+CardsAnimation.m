@@ -9,6 +9,8 @@
 #import "TripInfo+CardsAnimation.h"
 #import "NSDictionary+NullCheck.h"
 #import "Cards+CardsAnimation.h"
+#import "DBManager.h"
+#import "NSManagedObject+FetchEntity.h"
 
 @implementation TripInfo (CardsAnimation)
 
@@ -32,4 +34,11 @@
         [self addCardsObject:card];
     }
 }
+
++ (TripInfo *) tripInfo {
+    NSManagedObjectContext *context = [DBManager sharedDBManager].managedObjectContext;
+    TripInfo *tripInfo = (TripInfo *)[NSManagedObject entity:@"TripInfo" existsInContext:context];
+    return tripInfo;
+}
+
 @end

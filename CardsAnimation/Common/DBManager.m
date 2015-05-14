@@ -52,21 +52,22 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(DBManager);
 - (void)resetContext:(BOOL)clearDB
 {
     [NSFetchedResultsController deleteCacheWithName:nil];
-    [_managedObjectContext lock];
-    NSArray *stores = [_persistentStoreCoordinator persistentStores];
-    for (NSPersistentStore *store in stores) {
-        [_persistentStoreCoordinator removePersistentStore:store error:nil];
-        if (clearDB)
-        {
-            NSURL *tmpURL = [store.URL URLByDeletingPathExtension];
-            NSURL *shmFileURL = [tmpURL URLByAppendingPathExtension:@"sqlite-shm"];
-            NSURL *walFileURL = [tmpURL URLByAppendingPathExtension:@"sqlite-wal"];
-            [[NSFileManager defaultManager] removeItemAtURL:store.URL error:nil];
-            [[NSFileManager defaultManager] removeItemAtURL:shmFileURL error:nil];
-            [[NSFileManager defaultManager] removeItemAtURL:walFileURL error:nil];
-        }
-    }
-    [_managedObjectContext unlock];
+    [_managedObjectContext performBlockAndWait:^(void)
+     {
+         NSArray *stores = [_persistentStoreCoordinator persistentStores];
+         for (NSPersistentStore *store in stores) {
+             [_persistentStoreCoordinator removePersistentStore:store error:nil];
+             if (clearDB)
+             {
+                 NSURL *tmpURL = [store.URL URLByDeletingPathExtension];
+                 NSURL *shmFileURL = [tmpURL URLByAppendingPathExtension:@"sqlite-shm"];
+                 NSURL *walFileURL = [tmpURL URLByAppendingPathExtension:@"sqlite-wal"];
+                 [[NSFileManager defaultManager] removeItemAtURL:store.URL error:nil];
+                 [[NSFileManager defaultManager] removeItemAtURL:shmFileURL error:nil];
+                 [[NSFileManager defaultManager] removeItemAtURL:walFileURL error:nil];
+             }
+         }
+     }];
     
     _persistentStoreCoordinator = nil;
     _managedObjectContext = nil;

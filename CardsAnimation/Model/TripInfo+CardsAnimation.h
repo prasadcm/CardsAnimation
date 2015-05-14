@@ -11,5 +11,5 @@
 
 @interface TripInfo (CardsAnimation) <ManagedObjectProtocol>
 
-
++ (TripInfo *) tripInfo;
 @end
