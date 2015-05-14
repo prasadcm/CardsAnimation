@@ -12,6 +12,7 @@
 #import "ManagedObjectProtocol.h"
 #import "NSDictionary+NullCheck.h"
 
+
 @implementation CACommon
 
 + (NSString *) galleryPath {

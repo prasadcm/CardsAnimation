@@ -8,6 +8,15 @@
 
 @interface CACommon : NSObject
 
+typedef enum
+{
+    Summer = 1,
+    Winter,
+    Rainy,
+    Spring,
+    Autumn
+} WeatherDetails;
+
 
 + (NSString *) galleryPath;
 - (void) loadTripDetails;

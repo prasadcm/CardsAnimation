@@ -9,9 +9,11 @@
 #import "HomeViewController.h"
 #import "Cards.h"
 #import "TripInfo+CardsAnimation.h"
+#import "CACommon.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
 typedef void(^CALabelPreTransitionBlock)(UILabel* labelToEnter);
 typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnter);
 
@@ -20,19 +22,22 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     CGFloat viewWidth;
     CGFloat viewHeight;
     
+    NSInteger nextViewIndex;
+    
+    int maxAngle;
     BOOL needSwipe;
     BOOL firstViewAnimation;
-    
-    NSInteger nextViewIndex;
-    int maxAngle;
 }
 
-@property (strong, nonatomic)NSMutableArray *deckViewArray;
+//Outlets
 @property (weak, nonatomic) IBOutlet UIView *cardsContainerView;
 @property (weak, nonatomic) IBOutlet UILabel *temparaturLbl;
-@property (strong, nonatomic) UILabel *viewCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countryLbl;
 @property (weak, nonatomic) IBOutlet UILabel *daysToGoLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *weatherImgView;
+
+@property (strong, nonatomic) UILabel *viewCountLabel;
+@property (strong, nonatomic)NSMutableArray *deckViewArray;
 
 //Rotating animation objects
 @property (strong, nonatomic) UIView *animationView;
@@ -43,11 +48,14 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
 @property (copy, nonatomic) CALabelPreTransitionBlock preTransitionBlock;
 @property (copy, nonatomic) CALabelTransitionBlock transitionBlock;
 
+//Model Object
 @property (nonatomic,strong) TripInfo *tripInfo;
 
 @end
 
 @implementation HomeViewController
+
+#pragma mark - View Controller Life Cycle Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,43 +67,21 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     [super viewDidAppear:animated];
     self.deckViewArray = [[NSMutableArray alloc]init];
     
-    //Set YES to stop autoPlay of Animation
+    //Set needSwipe to NO for autoPlay card animation
     needSwipe = YES;
     firstViewAnimation = YES;
     
-    NSLog(@"%f",self.cardsContainerView.frame.size.width);
-    NSLog(@"%f",self.cardsContainerView.frame.size.height);
+    SONLog(@"%f",self.cardsContainerView.frame.size.width);
+    SONLog(@"%f",self.cardsContainerView.frame.size.height);
     
     viewWidth = self.cardsContainerView.frame.size.width;
     viewHeight = self.cardsContainerView.frame.size.height;
     
     [self.cardsContainerView.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
     
-    [self createViews:[self.tripInfo.cards count]];
+    [self createDeckViews:[self.tripInfo.cards count]];
     
-    //    [self animateFirstView:numberOfCards-1];
-    //    [self animateView:self.deckViewArray.count-1];
-    
-    //Adding card counter
-    self.animationView = [[UIView alloc]init];
-    [self.animationView setFrame:CGRectMake(viewWidth*0.45, viewHeight*0.95, 15, 20)];
-    [self.animationView setBackgroundColor:[UIColor clearColor]];
-    
-    [self prepareTransition:self.animationView];
-    [self setupEffect:0.3];
-    [self setText:@"01" animated:NO];
-    [self setFont:[UIFont boldSystemFontOfSize:13.0]];
-    [self setTextColor:[UIColor lightGrayColor]];
-    
-    [self.cardsContainerView addSubview:self.animationView];
-    
-    self.viewCountLabel = [[UILabel alloc]init];
-    [self.viewCountLabel setFrame:CGRectMake(CGRectGetMaxX(self.animationView.frame)+3, self.animationView.frame.origin.y, 40, 20)];
-    [self.viewCountLabel setText:[NSString stringWithFormat:@"of %02lu",[self.tripInfo.cards count]]];
-    [self.viewCountLabel setAdjustsFontSizeToFitWidth:YES];
-    [self.viewCountLabel setTextColor:[UIColor lightGrayColor]];
-    [self.viewCountLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
-    [self.cardsContainerView addSubview:self.viewCountLabel];
+    [self createCardCounter];
     
     if (!needSwipe) {
         [self animateFirstView:[self.tripInfo.cards count]-1];
@@ -111,6 +97,7 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     [self.daysToGoLbl setText:[NSString stringWithFormat:@"%@",self.tripInfo.daysToGo]];
     [self.daysToGoLbl setAdjustsFontSizeToFitWidth:YES];
     
+    [self updateWeatherInfo];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -119,7 +106,9 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     needSwipe = YES;
 }
 
--(void)createViews:(NSInteger)numberOfViews
+#pragma mark - Card Deck Methods
+
+-(void)createDeckViews:(NSInteger)numberOfViews
 {
     
     if (numberOfViews < 1) {
@@ -145,25 +134,14 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
         Cards *card = self.tripInfo.cards[numberOfViews - i - 1];
         UIImage *cardImage = [UIImage imageWithContentsOfFile:card.cardUrl];
         [deckView setImage:cardImage];
-
+        
         [self.cardsContainerView addSubview:deckView];
+        
         
         if (i!=numberOfViews-1)
         {
             [self rotateViewWithAngle:maxAngle forView:deckView anIndex:i];
         }
-        //        //To negate the angle value for even number of views
-        //        if (i % 2)
-        //        {
-        //            maxAngle = -maxAngle;
-        //        }
-        //
-        //        //Rotation
-        //        double rads = DEGREES_TO_RADIANS(maxAngle);
-        //        if (i!=numberOfViews-1) {
-        //            CGAffineTransform transform = CGAffineTransformRotate(deckView.transform, rads);
-        //            deckView.transform = transform;
-        //        }
         
         [self.deckViewArray addObject:deckView];
         
@@ -176,10 +154,6 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
             [deckView addGestureRecognizer:swipeRight];
         }
     }
-    
-    //    if (numberOfViews !=0) {
-    //        [self.cardsContainerView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:[picArray objectAtIndex:0]]]];
-    //    }
 }
 
 -(void)rotateViewWithAngle:(float)angle forView:(UIImageView *)view anIndex:(NSInteger)index
@@ -202,7 +176,7 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
 {
     if (swipe.direction == UISwipeGestureRecognizerDirectionRight)
     {
-        NSLog(@"Right Swipe");
+        SONLog(@"Right Swipe");
         
         if (firstViewAnimation == YES) {
             [self animateFirstView:[self.tripInfo.cards count]-1];
@@ -221,7 +195,7 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
     NSInteger __block currentIndex = viewCount;
     
     [self setText:[NSString stringWithFormat:@"%02lu",[self.tripInfo.cards count]-currentIndex+1] animated:YES];
-
+    
     [UIView animateWithDuration:0.7
                           delay:0.0
                         options: UIViewAnimationOptionTransitionNone
@@ -299,7 +273,7 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
                                                   
                                               }else if (currentIndex == 0)
                                               {
-                                                  //Code for Recursive call, comment below code if recursive not needed
+                                                  //Code for Recursive call
                                                   firstViewAnimation = YES;
                                                   if (!needSwipe) {
                                                       [self animateFirstView:[self.tripInfo.cards count]-1];
@@ -310,7 +284,69 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
                      }];
 }
 
-#pragma mark - Animate UIlabel
+#pragma mark - Weather info methods
+
+- (void) updateWeatherInfo{
+    //Setting Image According to Wether Value
+    NSString *wetherImgStr = @"";
+    switch ([self.tripInfo.weather intValue]) {
+            
+        case Summer:
+            wetherImgStr = @"SunnyImage";
+            break;
+            
+        case Winter:
+            //TODO:
+            break;
+            
+        case Rainy:
+            //TODO:
+            break;
+            
+        case Spring:
+            //TODO:
+            break;
+            
+        case Autumn:
+            //TODO:
+            break;
+            
+        default:
+            break;
+    }
+    
+    if (![wetherImgStr isEqualToString:@""]) {
+        [self.weatherImgView setImage:[UIImage imageNamed:wetherImgStr]];
+    }else{
+        [self.weatherImgView setImage:nil];
+    }
+}
+
+#pragma mark - Card counter rotation methods
+
+-(void)createCardCounter
+{
+    //Adding card counter
+    self.animationView = [[UIView alloc]init];
+    [self.animationView setFrame:CGRectMake(viewWidth*0.45, viewHeight*0.95, 15, 20)];
+    [self.animationView setBackgroundColor:[UIColor clearColor]];
+    
+    [self prepareTransition:self.animationView];
+    [self setupEffect:0.3];
+    [self setText:@"01" animated:NO];
+    [self setFont:[UIFont boldSystemFontOfSize:13.0]];
+    [self setTextColor:[UIColor lightGrayColor]];
+    
+    [self.cardsContainerView addSubview:self.animationView];
+    
+    self.viewCountLabel = [[UILabel alloc]init];
+    [self.viewCountLabel setFrame:CGRectMake(CGRectGetMaxX(self.animationView.frame)+3, self.animationView.frame.origin.y, 40, 20)];
+    [self.viewCountLabel setText:[NSString stringWithFormat:@"of %02lu",[self.tripInfo.cards count]]];
+    [self.viewCountLabel setAdjustsFontSizeToFitWidth:YES];
+    [self.viewCountLabel setTextColor:[UIColor lightGrayColor]];
+    [self.viewCountLabel setFont:[UIFont boldSystemFontOfSize:13.0]];
+    [self.cardsContainerView addSubview:self.viewCountLabel];
+}
 
 -(void)prepareTransition:(UIView *)view
 {
@@ -413,4 +449,5 @@ typedef void(^CALabelTransitionBlock)(UILabel* labelToExit, UILabel* labelToEnte
         label.textColor = textColor;
     }
 }
+
 @end

@@ -40,7 +40,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Temparature" translatesAutoresizingMaskIntoConstraints="NO" id="dJR-Go-wcI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dJR-Go-wcI">
                                 <rect key="frame" x="57" y="497" width="36" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="V9t-ie-kfA"/>
@@ -93,6 +93,7 @@
                         <outlet property="countryLbl" destination="nzf-zH-3P2" id="8vp-Po-3qJ"/>
                         <outlet property="daysToGoLbl" destination="dCM-H0-6n7" id="pHj-tK-TO0"/>
                         <outlet property="temparaturLbl" destination="6e9-zy-Tuy" id="LVZ-ij-MGj"/>
+                        <outlet property="weatherImgView" destination="dJR-Go-wcI" id="9GS-cG-ETU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdU-0B-HQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,7 +101,4 @@
             <point key="canvasLocation" x="-703" y="-673"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Temparature" width="36" height="36"/>
-    </resources>
 </document>
