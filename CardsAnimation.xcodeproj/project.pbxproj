@@ -32,6 +32,7 @@
 		C22793741B03810400A8ADC3 /* trip.gallery in Resources */ = {isa = PBXBuildFile; fileRef = C22793731B03810400A8ADC3 /* trip.gallery */; };
 		C22793771B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793761B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m */; };
 		C227937A1B03A50400A8ADC3 /* Cards+CardsAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */; };
+		C227937E1B045F8900A8ADC3 /* CARotatingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C227937D1B045F8900A8ADC3 /* CARotatingLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		C22793761B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+FetchEntity.m"; sourceTree = "<group>"; };
 		C22793781B03A50400A8ADC3 /* Cards+CardsAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cards+CardsAnimation.h"; sourceTree = "<group>"; };
 		C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Cards+CardsAnimation.m"; sourceTree = "<group>"; };
+		C227937C1B045F8900A8ADC3 /* CARotatingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CARotatingLabel.h; sourceTree = "<group>"; };
+		C227937D1B045F8900A8ADC3 /* CARotatingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CARotatingLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,7 @@
 		C21E4ECE1B02275F006D800C /* CardsAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				C227937B1B045F2000A8ADC3 /* Views */,
 				C227933A1B026F3000A8ADC3 /* Model */,
 				C21E4EEA1B0227D3006D800C /* Base.lproj */,
 				C21E4ED71B02275F006D800C /* Common */,
@@ -234,6 +238,15 @@
 				C22793791B03A50400A8ADC3 /* Cards+CardsAnimation.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C227937B1B045F2000A8ADC3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C227937C1B045F8900A8ADC3 /* CARotatingLabel.h */,
+				C227937D1B045F8900A8ADC3 /* CARotatingLabel.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +366,7 @@
 				C22793401B026FD200A8ADC3 /* DBManager.m in Sources */,
 				C227937A1B03A50400A8ADC3 /* Cards+CardsAnimation.m in Sources */,
 				C227933D1B026F5C00A8ADC3 /* CardsAnimation.xcdatamodeld in Sources */,
+				C227937E1B045F8900A8ADC3 /* CARotatingLabel.m in Sources */,
 				C22793611B03316900A8ADC3 /* TripInfo+CardsAnimation.m in Sources */,
 				C21E4EE51B02275F006D800C /* CATabBarController.m in Sources */,
 				C22793771B0395AC00A8ADC3 /* NSManagedObject+FetchEntity.m in Sources */,
